@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+<section class="content content_content" style="width: 70%; margin: auto;">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                    <i class="fa fa-globe"></i>
+                    Bras cassés & Co.<br>
+                    <small class="pull-left">
+                        Date:<h3>{{reservation.payement.datePaiement |date('Y-m-d')}}</h3>
+                    </small>
+                </h2>
+            </div>
+            <!-- /.col -->
+        </div>
+            <!-- info row -->
+        <div class="row invoice-info">
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+            A
+                <address>
+                    <strong>
+                        {{reservation.user.nom}} {{reservation.user.prenom}}
+                    </strong>
+                    <br>
+                    Adresse: {{reservation.adresse}}
+                <br>
+                Tel: {{reservation.telephone}}
+                <br>
+                Email: {{reservation.user.email}}
+                </address>
+            </div>
+            <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <b>Facture #007612</b><br>
+                    <br>
+                    <b>Ordre ID:</b>4F3S8J<br>
+                    <b>Compte:</b>968-34567
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Formule</th>
+                        <th>Départ du vol</th>
+                        <th>Retour du vol</th>
+                        <th>Nombre de Personnes</th>
+                        <th>Prix</th>
+                        <th>Taux Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{reservation.hotel.nom}}</td>
+                            <td>
+                                {{reservation.hotel.vols.values[0].dateDeDepart |date('d/m/Y h:i') }}</br>
+                                {{reservation.hotel.vols.values[0].dateArrive |date('d/m/Y h:i') }}
+                            </td>
+                            <td>
+                                {{reservation.hotel.vols.values[0].retourDateDeDepart |date('d/m/Y h:i') }}</br>
+                                {{reservation.hotel.vols.values[0].retourDateArrive |date('d/m/Y h:i') }}
+                            </td>
+                            <td>{{reservation.nombrePersonnes}}</td>
+                            <td>                           
+                                {{reservation.hotel.prix |price}}
+                            </td>
+                            <td>
+                            {% if reservation.hotel.promotion %}
+                                {{ (reservation.hotel.promotionPrix * reservation.nombrePersonnes)|price}}
+                            {% else %}
+                                {{ (reservation.hotel.prix * reservation.nombrePersonnes) |price}}
+                            {% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Total:</th>
+                                    <td>
+                                            {{ (reservation.hotel.prix * reservation.nombrePersonnes) |price}}
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+            <!-- /.row -->
+
+            <!-- this row will not appear when printing -->
+            <div class="row print">
+                <div class="col-xs-12">
+                    <a href="" class="btn btn-default" onclick="imprimer_page()"><i class="fa fa-print"></i>Imprimer</a>
+                    <a href="{{path('pdf', {id:reservation.id})}}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i>Générer un PDF</a>
+                </div>
+            </div>
+    </section>
+</section>
+
+    <script type="text/javascript">
+            function imprimer_page(){
+            window.print();
+            }
+    </script>
+{% endblock %}

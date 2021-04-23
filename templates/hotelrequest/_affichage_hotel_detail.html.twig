@@ -1,0 +1,71 @@
+<div class="container_hotel_details">
+    <div class="hotel_details_top mb-3">
+        <div class="hotel_details_titre">
+            <ul>
+                <li class="hotel_details_titre_etoile">
+                    <h4><b>{{hotel.nom}}</b></h4>
+                    <div id="list">
+                        <img id="item" src="{{ asset('images/image_vol/etoile.png') }}" width="25px" height="25px">
+                    </div>
+                </li>
+                <li><a href=""><i class="fas fa-map-marker-alt"></i> {{ hotel.adresse }}</a></li>
+            </ul>
+        </div>
+        <div class="hotel_details_share_reseaux">
+            <!-- Load Facebook SDK for JavaScript -->
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="Jkro3s8l"></script>
+                {# // <script>(function(d, s, id) {
+                // var js, fjs = d.getElementsByTagName(s)[0];
+                // if (d.getElementById(id)) return;
+                // js = d.createElement(s); js.id = id;
+                // js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                // fjs.parentNode.insertBefore(js, fjs);
+                // }(document, 'script', 'facebook-jssdk'));</script> #}
+                <!-- Your share button code -->
+                <div class="fb-share-button" data-href="http://127.0.0.1:8000/request_hotel/details/{{hotel.id}}" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
+        </div>
+    </div>
+
+    <div class="hotel_details_images">
+        <div class="hotel_details_imgG">
+            <img src="{{ asset('images/hotel/' ~ hotel.image) }}" class="card-img-top" alt="...">
+        </div>
+        <div class="hotel_details_imgD">
+            <div class="hotel_details_imgD_top">
+                <img src="{{ asset('images/hotel/' ~ hotel.image2) }}" class="card-img-top" alt="...">
+                <img src="{{ asset('images/hotel/' ~ hotel.image3) }}" class="card-img-top" alt="...">
+            </div>
+            <div class="hotel_details_imgD_bottom">
+                <img src="{{ asset('images/hotel/' ~ hotel.image4) }}" class="card-img-top" alt="...">
+                {# style="width: 150px; height: 50px;" #}
+                <img src="{{ asset('images/image_vol/voirplus.png') }}" alt="" >
+            </div>
+        </div>
+    </div>
+    <div class="hotel_details_infoPrix mt-4">
+        <div class="hotel_details_info">
+            <ul>
+                <li><a href="">Information général</a></li>
+                <li><a href="">Vol</a></li>
+                <li><a href="">Avis</a></li>
+            </ul>
+        </div>
+        <div class="hotel_details_prix">
+            <ul>
+                <li>
+                Dès {% if hotel.promotion %}
+                        <b style="color: green; font-size:2.2rem;"> {{ hotel.prix |price}}</b> au lieu de
+                        <em style="color: red;"><strike> {{ hotel.promotionPrix |price}}</strike></em> <br>
+                    {% else %}
+                        <h4><b style="color: red; font-size:2rem;"> {{ hotel.prix |price}}</b></h4><br>   
+                    {% endif %} <em>Prix par personne, 7nuits</em> 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="hotel_details_description mt-5">
+        <h5>Information général</h5>
+        <p class="card-title">{{ hotel.description }}</p> 
+    </div>
+</div>

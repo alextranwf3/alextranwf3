@@ -1,0 +1,35 @@
+        {{form_start(form)}}
+        {{ form_errors(form)}}
+        <div class="row">
+        <div class="col-md-6 mt-5 ">
+        {{ form_row(form.nom_aeroport_depart) }}
+        {{ form_row(form.nom_aeroport_arrive) }}
+        {{ form_row(form.nom_ville_arrive) }}
+        {{ form_row(form.pays) }}
+        {{ form_row(form.compagnie_depart) }}
+        {{ form_row(form.compagnie_retour) }}
+        <div class="checkbox_vol mt-4 mb-4"> 
+        <label for="affaire">vol classe affaire</label>
+        {{ form_row(form.voyage_affaire) }}
+        <label for="affaire">vol classe économique</label>
+        <input class="form-check-input" type="checkbox">
+        </div>
+        {{ form_row(form.classe_affaire) }}
+        {{ form_row(form.classe_economique) }}
+        </div>
+        <div class="col-md-6 mt-5 "> 
+        <h3>Aller</h3>       
+        {{ form_row(form.date_de_depart) }}
+        {{ form_row(form.date_arrive) }}
+        {{ form_row(form.date_debut_sejour) }}
+        <h3>Retour</h3>
+        {{ form_row(form.retour_date_de_depart) }}
+        {{ form_row(form.retour_date_arrive) }}
+        {{ form_row(form.date_fin_sejour) }}
+        {{ form_row(form.duree_vol) }}
+        </div>
+        <div class="text-center mt-4"> 
+            {{ form_row(form.submit) }}    
+        </div>
+        {{form_end(form)}}
+        </div>

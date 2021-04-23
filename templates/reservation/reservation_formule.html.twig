@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+
+<div class="container_admin_liste_hotel">
+      {% include "admin/crud_voyage/hotel/_affichage_hotel.html.twig" %}
+          </ul>                            
+      </div>
+  </div>
+</div>
+<div class="container_admin_liste_vol">
+        {% for vol in hotel.vols %}             
+            <div class="admin_liste_vol">
+                <div class="admin_DepartVol_liste_vol mt-3">
+                    {% include "admin/crud_voyage/hotel/_affichage_vol.html.twig" %} 
+                </div> 
+        {% endfor %}
+    </div>
+ </div>
+ 
+{% if listing is not empty %}
+    {% if values is empty %}
+        <div class="lead text-center mt-5 reservation_formulaire "><h3>Reservé votre Formule de voyage</h3> </div>
+        {% include "reservation/_form_reservation.html.twig" %} 
+    {% else %}
+        {% for v in values %}
+            {% if v.user.id == user.id %}      
+                {% if v.hotel.id == hotel.id  %}
+                        {% if listing[0].user.id == user.id %}
+                            <div class="lead text-center mt-5 reservation_resultat"><h3>Votre Formule de voyage</h3> </div>
+                            {% include "reservation/_affichage_reservation.html.twig" %}
+                                {% if listing[0].payement is null %}
+                                    <div class="text-center mt-5"> 
+                                        <a href="{{path('reservation_modification',{id:listing[0].id})}}" class="btn btn-info mb-5">Modifier</a>
+                                        <a href="{{path('payement',{id:listing[0].id})}}" class="btn btn-primary mb-5">Paiement</a>
+                                    </div> 
+                                    {% else %}
+                                    <div class"mt-5"><hr></div>
+                                {% endif %}
+                        {% endif %} 
+                {% endif %} 
+            {% else %}
+                {% if values is empty %}
+                    <div class="lead text-center mt-5 reservation_formulaire "><h3>Reservé votre Formule de voyage</h3> </div>
+                    {% include "reservation/_form_reservation.html.twig" %}
+                {% endif %}
+            {% endif %}  
+        {% endfor %}
+    {% endif %} 
+{% else %}
+    <div class="lead text-center mt-5 reservation_formulaire "><h3>Reservé votre Formule de voyage</h3> </div>
+    {% include "reservation/_form_reservation.html.twig" %} 
+{% endif %}
+
+{% endblock %}

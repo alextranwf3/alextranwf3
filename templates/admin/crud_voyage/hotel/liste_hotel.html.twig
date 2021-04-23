@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}liste des hotels {% endblock %}
+
+{% block body %}
+<div class="container_admin_liste_hotel">
+    <div class="text-end mt-4">
+        <a href="{{path("add_hotel")}}" class="btn btn-primary">ajouter un hotel</a>
+    </div>
+    {% for hotel in hotels %}
+
+    {% include "admin/crud_voyage/hotel/_affichage_hotel.html.twig" %}
+            <li><a href="{{ path('hotel_vol', {id: hotel.id}) }}" class="btn btn-primary mb-2">Ajouter un vol</a></li>
+            <li><a href="{{path('hotel_modifier',{id:hotel.id})}}" class="btn btn-primary">modifier</a></li> 
+        </ul>
+    </div>
+</div>
+    {% endfor %}
+
+{# </div> #}
+<div class="navigation">
+    {{ knp_pagination_render(hotels) }}
+</div>
+{% endblock %}

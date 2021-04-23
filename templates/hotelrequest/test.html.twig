@@ -1,0 +1,101 @@
+{% extends "base.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+$(document).ready(function() {
+    var minDate = new Date();
+    $("#depart").datepicker({
+        showAnim: 'drop',
+        numberOfMonth: 1,
+        minDate: minDate,
+        dateFormat: 'dd/mm/yy',
+
+    });
+    $("#return").datepicker({
+        showAnim: 'drop',
+        numberOfMonth: 1,
+        minDate: minDate,
+        dateFormat: 'dd/mm/yy',
+    });
+});
+let input = $('input').get(0); // conversion from jquery to regular element
+</script>
+{% endblock %}
+
+{% block title %}hotels details{% endblock %}
+{% block body %}
+ <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <form metod="GET" action="{{path('hotelrequest')}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">aeroport de départ</span>
+                                        <input name="" class="form-control" type="text" placeholder="City or airport">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Destination Ville</span>
+                                        <input name="q" class="form-control" type="text" placeholder="City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">Departing</span>
+                                        <input name="depart" class="form-control" type="date" id="depart" placeholder="Depart Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">Returning</span>
+                                        <input name="retour" class="form-control" type="date" id="return" placeholder="Return Date">
+                                    </div>
+                                </div>
+                                {# <div class="col-md-2">
+                                   <div class="form-group">
+                                        <span class="form-label">Adult</span>
+                                        <input name="Adult" class="form-control" type="number" min="0" step="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <span class="form-label">Children -18</span>
+                                        <input name="Children -18" class="form-control" type="number" min="0" step="1">
+                                    </div>
+                                </div>
+                            </div> #}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                         <input class="form-check-input" name="economie" type="checkbox" value="1" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                           Classe Economique 
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" name="affaire">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Classe Affaire
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-btn">
+                                        <button type="submit" class="submit-btn">valider</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock %}

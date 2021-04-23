@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}hotel et vol {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script type="text/javascript">
+  function cloneItem() {
+      var item = document.getElementById("item");
+      var list = document.getElementById("list");
+      var clonedItem = item.cloneNode(true);
+      list.appendChild(clonedItem);
+  }
+
+  for(var i = 1; i < {{hotel.etoile}}; i++) {
+    cloneItem();
+  }
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container_admin_liste_hotel">
+        <div class="text-end mt-4">
+            <a href="{{path("liste_hotel")}}" class="btn btn-primary">liste des hotels</a>
+        </div>
+        {% include "admin/crud_voyage/hotel/_affichage_hotel.html.twig" %}
+            </ul>                            
+        </div>
+    </div>
+</div>
+{% if hotel.vols is not empty %}
+    <div class="container_admin_liste_vol"> 
+        {% for vol in hotel.vols %}             
+            <div class="admin_liste_vol">
+                <div class="admin_DepartVol_liste_vol mt-3">
+                    {% include "admin/crud_voyage/hotel/_affichage_vol.html.twig" %} 
+                </div>                  
+            <div class="text-center">    
+                <a href="{{path('vol_modifier',{id:vol.id})}}" class="btn btn-primary mb-5">modifier</a>
+            </div> 
+        {% endfor %}
+    </div>
+</div>
+ {# changer #}
+{% else %}
+    <div class="lead text-center mt-5"><h3>Ajouter un vol</h3> </div>       
+    <div class="container_admin_add_avion">
+    {% include "admin/crud_voyage/hotel/_form_crud_vol.html.twig" %}    
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "membre/index.html.twig" %}
+
+{% block title %}Espace membre / Coordonnées{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Espace membre</h1>
+    <h2>Vos coordonnées</h2>
+    <div class="coordonnees">
+        <p><strong>Nom</strong> : {{ user.nom }}</p>
+        <p><strong>Prénom</strong> : {{ user.prenom }}</p>
+        <p><strong>Email</strong> : {{ user.email }}</p>
+        <p><strong>Date de naissance</strong> : {{ user.dateDeNaissance|date('d-m-Y') }}</p>
+    </div>
+    <div class="btnBackOrModify">
+        <a class="btn btn-secondary" href="{{path('membre')}}"><- Retour</a>
+        <a type="button" class="btn btn-info" href="{{path('membre_modification', {id: user.id})}}">Modifier</a>
+        <a class="btn btn-danger" href="{{path('membre_supprimer', {id:user.id})}}" onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');">Supprimer son compte</a>
+    </div>
+</div>
+
+
+{% endblock %}

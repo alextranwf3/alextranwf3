@@ -1,0 +1,29 @@
+{{form_start(form)}}
+    {{ form_errors(form)}}
+     {{ form_row(form.nom) }}
+     {{ form_row(form.etoile) }}
+     {{ form_row(form.adresse) }}
+     <p>mettre en Promotion le séjour ?</p>
+    <div class="checkbox_vol mt-4 mb-4"> 
+        <label for="affaire">oui</label>
+        {{ form_row(form.promotion) }}
+        <label for="affaire">non</label>
+        <input class="form-check-input" type="checkbox" >
+    </div>
+    {{ form_row(form.promotion_prix) }}
+     {{ form_row(form.prix) }}
+     {{ form_row(form.description) }} 
+     <div class="admin_form_ajout_image_hotel">
+        <div class="admin_form_ajout_image_hotel_top">
+            {{ form_row(form.image) }}
+            {{ form_row(form.image2) }}
+        </div>
+        <div class="admin_form_ajout_image_hotel_top">
+            {{ form_row(form.image3) }}
+            {{ form_row(form.image4) }}
+        </div>
+     </div> 
+     <div class="text-center mt-4">
+     {{ form_row(form.submit) }}
+     </div>
+    {{form_end(form)}}

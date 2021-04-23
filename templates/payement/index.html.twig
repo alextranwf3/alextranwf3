@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+
+ <div class="creditCardForm">
+ <div class="heading">
+ <h1> Carte de crédit/bancaire  </h1>
+ </div>
+ <div class="payment">
+  <form method='POST' >
+    <div class="form-group owner">
+        <label for="owner"> Nom titulaire </label>
+        <input type="text" class="form-control" id="owner">
+    </div>
+    <div class="form-group CVV">
+        <label for="cvv">CVC</label>
+        <input type="text" class="form-control" id="cvv">
+    </div>
+    <div class="form-group" id="card-number-field">
+    <label for="cardNumber">  Carte bancaire  </label>
+    <input type="text" class="form-control" id="cardNumber">
+    </div>
+    <div class="form-group" id="expiration-date">
+      <label> Date expiration </label>
+      <select>
+        <option value="01"> Janvier </option>
+        <option value="02"> Février </option>
+        <option value="03"> Mars  </option>
+        <option value="04"> Avril </option>
+        <option value="05"> Mai  </option>
+        <option value="06"> Juin </option>
+        <option value="07"> Juillet  </option>
+        <option value="08"> Août </option>
+        <option value="09"> Septembre  </option>
+        <option value="10"> Octobre  </option>
+        <option value="11"> Novembre </option>
+        <option value="12"> Decembre </option>
+      </select>
+      <select>
+        <option value="16"> 2021  </option>
+        <option value="17"> 2022  </option>
+        <option value="18"> 2023  </option>
+        <option value="19"> 2024  </option>
+        <option value="20"> 2025  </option>
+        <option value="21"> 2026  </option>
+      </select>
+  </div>
+  <div class="form-group" id="credit_cards">
+    <img src="https://bootstraptema.ru/snippets/form/2017/visa.jpg" id="visa">
+    <img src="https://bootstraptema.ru/snippets/form/2017/mastercard.jpg" id="mastercard">
+    <img src="https://bootstraptema.ru/snippets/form/2017/amex.jpg" id="amex">
+  </div>
+  <div class="form-group" id="pay-now">
+  
+    {{form(form)}}
+ </div>
+ </form>
+ </div>
+ </div>
+
+</div>
+</div>
+  
+{% endblock %}
+

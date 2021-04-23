@@ -1,0 +1,49 @@
+{% extends "membre/index.html.twig" %}
+
+{% block title %}Espace membre / Mes réservations{% endblock %}
+
+{% block body %}
+
+<div class="container">
+<h2 class="text-center">Mes réservations</h2>
+<table class="table table-bordered border-dark">
+  <thead>
+    <tr>
+      <th scope="col">Formule</th>
+      <th scope="col">Date de la réservation</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Facture</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for lis in listing %}
+    <tr>
+      <td> {{lis.hotel.nom}} </td>
+      <td>{{lis.payement.datePaiement |date('d/m/Y')}}</td>
+      <td>
+          {{ (lis.hotel.prix * lis.nombrePersonnes) |price}}
+      </td>
+      <td>
+        <a href=" {{path('pdf', {id:lis.id})}} ">Version pdf</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href=" {{path('hotel_details', {id:lis.hotel.id})}} ">Voir plus de détails</a>
+          </li>
+          <li>
+            <a href=" {{path('hotel_avis', {id:lis.hotel.id})}} ">Ajouter un avis </a>
+          </li>
+          <li>
+            <a href="#">Annuler la réservation</a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+          {% endfor %}
+  </tbody>
+</table>
+<a class="btn btn-primary" href=" {{path('membre')}} " role="button"><--Retour</a>
+</div>
+{% endblock %}

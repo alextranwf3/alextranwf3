@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des Commentaires{% endblock %}
+
+{% block body %}
+<div class="container">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Formule</th>
+      <th scope="col">Avis</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in commentaire %}
+    <tr>
+        <td>{{item.user.nom}}</td>
+        <td>{{item.user.prenom}}</td>
+        <td>{{item.hotel.nom}}</td>
+        <td>{{item.message}}</td>
+        <td><a class="btn btn-danger" href="{{path('admin_commentaire_delete', {id:item.id})}}" onclick="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">Supprimer</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+
+{% endblock %}

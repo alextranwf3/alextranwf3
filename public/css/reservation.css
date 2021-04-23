@@ -1,0 +1,39 @@
+/*réservation*/
+
+.reservation_formulaire 
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-right: 300px;
+    padding-left: 300px;
+    margin-left: 135px;
+    margin-right: 135px;
+    background-color:#F9F8F8;
+}
+
+.reservation_resultat 
+{
+    display:flex;
+    justify-content:center;
+    background-color:#F9F8F8;
+    margin-left: 135px;
+    margin-right: 135px;
+}
+
+/*Facture*/
+
+.invoice 
+{
+    position: relative;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    padding: 20px;
+    margin: 10px 25px;
+}
+
+.page-header 
+{
+    margin: 10px 0 20px 0;
+    font-size: 22px;
+}

@@ -1,0 +1,14 @@
+#registration_form_date_de_naissance {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.registrationStyle .required {
+    width: 100%;
+    text-align: center;
+}
+
+.registrationCGU {
+    text-align: initial;
+}

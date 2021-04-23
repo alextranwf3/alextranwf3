@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Admin{% endblock %}
+
+{% block body %}
+
+    <h1>Espace Administrateur</h1>
+        <p>Bienvenue dans l'espace Administrateur</p>
+        <ul>
+            <li>
+                <a href=" {{path('liste_hotel')}} ">Listing Voyages</a>
+            </li>
+            <li>
+                <a href=" {{path('liste_membre')}} ">Listing Membres</a>
+            </li>
+            <li>
+                <a href=" {{path('liste_commentaire')}} ">Listing Commentaires</a>
+            </li>
+            <li>
+                <a href="#">Statistiques</a>
+            </li>
+        </ul>
+
+{% endblock %}

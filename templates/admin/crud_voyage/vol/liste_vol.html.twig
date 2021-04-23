@@ -1,0 +1,23 @@
+{# {% extends "base.html.twig" %}
+
+{% block title %}liste des vols {% endblock %}
+
+{% block body %}
+    <div class="container_admin_liste_vol">
+        <div>
+        <div class="text-start">
+            <a href="{{path("liste_hotel")}}" class="btn btn-info">liste des hotels</a>
+        </div>
+        </div>
+        {% for vol in vols %}        
+        <div class="admin_liste_vol mb-5">
+           {% include "admin/crud_voyage/hotel/_affichage_vol.html.twig" %}
+        <div class="text-center mb-5">    
+            <a href="{{path('vol_modifier',{id:vol.id})}}" class="btn btn-primary">modifier</a>
+        </div>       
+        {% endfor %}
+    </div>
+<div class="navigation">
+    {{ knp_pagination_render(vols) }}
+</div>
+{% endblock %} #}

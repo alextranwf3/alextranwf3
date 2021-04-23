@@ -1,0 +1,77 @@
+{# <header class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #18d0fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> <img src="{{ asset('images/image_vol/logo2.png') }}" alt="logo" width="50px" height="40px"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {{route_name == 'home' ? 'active'}}" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{route_name == 'contact' ? 'active'}}" href="{{ path('contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{route_name == 'hotelrequest' ? 'active'}}" href="{{ path('hotelrequest') }}">Liste de formules</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('redirect-user')}}">Mon Compte</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
+                    </li>    
+                    {% else %}
+                        <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+                    {% endif %}
+                    </li>
+                </ul>       
+            </div>
+        </div>
+    </nav>
+</header> #}
+
+<div class="wrapper" id="printableArea">
+    <header class="header">
+            <div class="container">
+                <div class="header__body">
+                    <a href=" {{path('home')}} " class="header__logo">
+                        <img src="{{asset('images/logo.png')}}" alt="logo">
+                        </a>
+                        
+                        <div class="header__burger">
+                            <span></span>
+                        </div>
+                    <nav class="header__menu">
+                        <ul class="header__list">
+                            <li>
+                                <a class="nav-link {{route_name == 'home' ? 'active'}}" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                            </li>
+                            <li>
+                                <a class="nav-link {{route_name == 'contact' ? 'active'}}" href="{{ path('contact') }}">Contact</a>
+                            </li>
+                            {% if is_granted('ROLE_USER') %}
+                            <li>
+                                <a class="nav-link" href="{{path('redirect-user')}}">Mon Compte</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+                            </li>
+                            {% endif %}    
+                            <li>
+                        </ul>
+                     </nav>    
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+</header>

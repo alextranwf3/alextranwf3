@@ -1,0 +1,232 @@
+{% extends 'base.html.twig' %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+        <script>
+            $(document).ready(function() {
+                new Typed('#typed', {
+                    strings: [
+                        '<h3>Retrouvez nos agences ouvertes à proximité de chez vous.</h3>',
+                        '<h3><b><i class="fas fa-bolt"></i>Ventes Flash<i class="fas fa-bolt"></i></b> l\'été approche économisez sur vos vacances.</h3>.',
+                        '<h3>Un service de dates de voyage flexibles avec couverture <b>COVID-19</b> .</h3>'
+                    ],
+                    stringsElement: null,
+                    typeSpeed: 50,
+                    loop: true,
+                    showCursor: false,
+                });
+            })
+
+            var swiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+    },
+
+    loop: true,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+});
+$(document).ready(function() {
+    $('.headerburger').click(function(event) {
+        $('.headerburger,.header__menu ').toggleClass('active');
+        $('body').toggleClass('lock');
+    })
+});
+        </script>
+    {% endblock %}
+    {% block body %}
+
+    {# banniere secondaire information #}
+    <div class="row header_banniere_text" >
+            <div class="col-lg-8 mx-auto">
+                <div class=" header_banniere_text-center ">
+                    <div id="typed"style="color:#29d0fd;"></div>
+                </div>
+            </div>    
+    </div>  
+
+    <!-- SliderCarousel -->
+   <div class="slides-nikita" id="potema">
+   <div style="background-image:url(https://www.ovoyages.com/assets/images/landing_pages/3fdf550819fa59c66b85e55cecb82a1f.jpg)"></div>
+  <div style="background-image:url(https://voyel.com/files/hervouetvoyel/publications/kerala-maldives/IMAGE%20TEST.jpg)"></div>
+  <div style="background-image:url(https://www.mes-allocs.fr/guides/wp-content/uploads/2019/11/cheque-vacances.jpg)"></div>
+  <div style="background-image:url(https://www.10wallpaper.com/wallpaper/1366x768/1712/Maldives_resort_palm_trees_Travel_4K_Ultra_HD_1366x768.jpg)"></div>
+  <div style="background-image:url(http://www.invention-video.com/diz/vacances-2.jpg)"></div>
+  <!-- Les Fleshes -->
+  <i class="left" class="fleshes" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50 L 70,10 L 60,0 Z"></path></svg></i>
+  <i class="right" class="fleshes" style="z-index:2; position:absolute;"><svg viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 70,90 L 30,50 L 70,10 L 60,0 Z" transform="translate(100, 100) rotate(180) "></path></svg></i>
+  <!-- Ecriture -->
+  <span class="text">
+  <h1>Votre agence de voyage en ligne</h1>
+  </span>
+</div>
+<!--SliderCarousel-->
+
+
+
+    {# barre de recherche #}
+    <div id="booking" class="section mt-5">
+        <div class="section-center">
+            <div class="container_barre">
+                <div class="row">
+                    <div class="booking-form">
+                        <form method="GET" action="{{path('hotelrequest')}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">aeroport de départ</span>
+                                        <input name="lieuDepart" class="form-control" type="text" placeholder="City or airport">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Destination Ville</span>
+                                        <input name="q" class="form-control" type="text" placeholder="City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Date de départ</span>
+                                        <input name="depart" class="form-control" type="date" id="depart" placeholder="Depart Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Date de retour</span>
+                                        <input name="retour" class="form-control" type="date" id="return" placeholder="Return Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                         <input class="form-check-input" name="economie" type="checkbox" value="1" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                           Classe Economique 
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" name="affaire">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Classe Affaire
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-btn">
+                                        <button type="submit" class="submit-btn">valider</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+{# carousel promotion #}
+        <div class="container_titre_promotion">
+            <div class="nouveaute_titre">
+                <h2>Formule en promotion</h2>
+                <div class="nouveaute_line"></div>
+            </div>
+        </div>
+    <div class="swiper-container">
+   <div class="swiper-wrapper">
+    {% for hotel in hotels %}
+        
+    
+
+    <div class="swiper-slide carousel_reglage">
+    <div class="image_carousel">
+        <a href="{{path('hotel_details',{id:hotel.id}) }}"><img src="{{ asset('images/hotel/' ~ hotel.image) }}" class="card-img-top" alt="..."></a>
+    </div>
+    <div class="image_carousel_titre">
+        <ul style="list-style:none;">
+                <li class="hotel_details_titre_etoile">
+                    <h5><b>{{hotel.nom}}</b></h5><br>                  
+                    <div id="list">
+                        <img id="item" src="{{ asset('images/image_vol/etoile.png') }}" width="25px" height="25px">
+                    </div>
+                    ({{hotel.etoile}})
+                </li>
+                <li><h6 class="card-title"><a href=""><i class="fas fa-map-marker-alt"></i> {{ hotel.adresse }}</a> </h6></li>
+                <li><p style="color:#e04964;"><i class="fas fa-shield-virus"></i> Hôtel avec annulation gratuite (Covid)</p></li>
+                <li><p style="color:#6da716;"><i class="fas fa-utensils"></i> Petit Déjeuner inclus</p></li>
+                
+                <div class="carousel_prix_div">
+                    <li class="carousel_prix">
+                        <b>1 personne, 7 nuits</b>  à<b style="color: green; font-size:1.4rem;"> {{ hotel.prix |price}}</b><br>
+                        <em style=" margin-left:6rem;">au lieu de <strike style="color: red;"> {{ hotel.promotionPrix |price}}</strike></em>
+                    </li>
+                </div>
+            </ul>  
+        </div>    
+    </div>    
+  {% endfor %}  
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+{# carousel promotion #}
+
+  {# livraison et paiement #}
+  <div class="container_livraisonPaiement">
+      <div class="livraison_PaiementCase">
+        <i class="fas fa-plane"></i>
+        <a href="#"> <b>Vol</b></br> inclus dans nos formules</a>
+      </div>
+      <div class="livraison_PaiementCase">
+        <i class="fas fa-recycle"></i>
+        <a href="#">Moins cher ailleurs ? Nous vous remboursons 10x la différence**</a>
+      </div>
+      <div class="livraison_PaiementCase">
+        <i class="far fa-credit-card"></i>
+        <a href="#"><b> paiement</b> </br>sécurisé</a>
+      </div>
+      <div class="livraison_PaiementCase">
+        <i class="fas fa-stopwatch-20"></i>
+        <a href="#"><b>Click & </br> Reserve</b></a>
+      </div>
+  </div>
+<div class="Welcome">
+        <h1>Localisation de l'agence</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum fugit dolorem ipsam quisquam?</p>
+    </div>
+    <div class="map-responsive">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2639.786780937981!2d7.753659615644184!3d48.57563242852808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c9aa9e6428c5%3A0xc0ab57baa891c137!2s24%20Rue%20de%20Lausanne%2C%2067000%20Strasbourg!5e0!3m2!1sru!2sfr!4v1617897855960!5m2!1sfr!2sfr"
+            width="2500" height="700" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    
+        {{render(controller('App\\Controller\\BaseController:footer', {
+                'routeName' : route_name
+            }))}}
+   
+    
+{% endblock %}
+

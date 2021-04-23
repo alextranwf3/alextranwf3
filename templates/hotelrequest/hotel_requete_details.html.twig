@@ -1,0 +1,85 @@
+{% extends "base.html.twig" %}
+
+{% block title %}hotels details{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script type="text/javascript">
+  function cloneItem() {
+      var item = document.getElementById("item");
+      var list = document.getElementById("list");
+      var clonedItem = item.cloneNode(true) ;
+      list.appendChild(clonedItem);
+  }
+
+  for(var i = 1; i < {{hotel.etoile}}; i++) {
+    cloneItem();
+
+  }
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="text-start mt-5 mb-3">
+    <a href="{{path("hotelrequest")}}" class="btn btn-primary">Retour liste des hotels</a>
+</div>
+    {% include "hotelrequest/_affichage_hotel_detail.html.twig" %}  
+<div class="hotel_details_classe_vol text-center mt-5">
+        <div class="hotel_detail_trait"></div>
+        <h3><b>VOL INCLUS</b></h3>
+        <p class="card-title">
+            <b>Vol  
+                {% for d in hotel.vols %}
+                    {% if d.voyageAffaire %}
+                            classe affaire 
+                    {% else %}
+                            classe économique
+                    {% endif %}
+                {% endfor %}
+            </b>
+        </p> 
+        <div class="hotel_detail_trait"></div>
+</div>
+
+
+
+<div class="container_admin_liste_vol"> 
+    {% for vol in hotel.vols %}             
+        <div class="admin_liste_vol">
+            <div class="admin_DepartVol_liste_vol mt-3">
+                {% include "admin/crud_voyage/hotel/_affichage_vol.html.twig" %} 
+{# LES AVIS #}
+                <hr />
+                <div class="container">
+                    <div style="display:flex; align-items: center;">
+                        <h3>Avis ({{hotel.commentaires.count}}) </h3>
+                        
+                    </div>
+                    <div>
+                        {% for hotel in hotel.commentaires %}
+                        <h1>{{hotel.note|star}} {{hotel.note}}/5</h1>
+                        <div class="my-3">
+                            <b>Publié le {{hotel.createdAt| date('d-m-Y')}} Par {{hotel.user.prenom}} {{hotel.user.nom}}</b>
+                        </div>
+                        <div>
+
+                            {{hotel.message|nl2br}}
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+                </div>    
+                <hr/>
+
+{# BOUTON RESERVER SI CONNECTER  #}
+         <div class="text-center"> 
+            {% if is_granted('ROLE_MEMBER') %}
+                <a href=" {{path('reservation',{id:hotel.id}) }} " class="btn btn-primary mb-5">Reserver votre voyage</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-primary mb-5">Connectez-vous avant de réserver</a>
+            {% endif %}   
+            
+        </div> 
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<div class="admin_liste_hotel">
+        <div class="admin_image_liste_hotel">
+            <img src="{{ asset('images/hotel/' ~ hotel.image) }}" class="card-img-top" alt="...">
+        </div>
+        <div class="admin_titre_liste_hotel">
+            <ul style="list-style:none;">
+                <li class="hotel_details_titre_etoile">
+                    <h3><b>{{hotel.nom}}</b></h3><br>                  
+                    <div id="list">
+                        <img id="item" src="{{ asset('images/image_vol/etoile.png') }}" width="25px" height="25px">
+                    </div>
+                    ({{hotel.etoile}})
+                </li>
+                <li><h4 class="card-title"><a href=""><i class="fas fa-map-marker-alt"></i> {{ hotel.adresse }}</a> </h4></li>
+                <li><p style="color:#e04964;"><i class="fas fa-shield-virus"></i> Hôtel avec annulation gratuite (Covid)</p></li>
+                <li><p style="color:#6da716;"><i class="fas fa-utensils"></i> Petit Déjeuner inclus</p></li>
+                <li><p class="card-title">{{ hotel.description |slice(0,50) }}...</p> </li>
+            </ul>                       
+        </div>   
+        <div class=" card admin_prix_liste_hotel">
+             <ul class="ul_hotel_prix">
+                <li> 
+                    <h4 class="text-center"><b>
+                    {% for d in hotel.vols %}
+                        {% if d.voyageAffaire %}
+                              Vol classe affaire <br>+<br> 
+                        {% else %}
+                              Vol classe économique <br>+<br> 
+                        {% endif %}
+                    {% endfor %}
+                    
+                    Hôtel</b></h4>
+                </li>
+                <li>
+                    <h7 class="card-title">
+                        {% if hotel.promotion %}
+                            <b style="color: green; font-size:1.4rem; font-size:2rem;"> {{ hotel.prix |price}}</b><br>
+                            <em style="color: red;"><strike> {{ hotel.promotionPrix |price}}</strike></em> 
+                        {% else %}
+                            <b style="color: red; font-size:1.4rem; font-size:2rem;"> {{ hotel.prix |price}}</b>   
+                        {% endif %}
+                            /7jours
+                    </h7>
+                </li>                      

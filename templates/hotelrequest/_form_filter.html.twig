@@ -1,0 +1,22 @@
+{# {{form_start(form,{attri: {class: 'filter'}}) }} #}
+{{form_start(form) }}
+{{form_row(form.q)}}
+<h4>Pays</h4>
+{{form_row(form.pays)}}
+{{form_row(form.depart)}}
+{{form_row(form.retour)}}   
+<h4>Prix</h4>
+<div class="row ">
+    <div class="col-md-6">
+        {{form_row(form.min)}}
+    </div>
+    <div class="col-md-6">
+        {{form_row(form.max)}}
+    </div>
+</div>
+<h4>classe affaire</h4>
+{{form_row(form.economie)}}
+{{form_row(form.affaire)}}
+<h4>classe affaire</h4>
+{{form_row(form.promotion)}}
+{{form_end(form)}}

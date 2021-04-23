@@ -1,0 +1,11 @@
+<h1>Veuillez confirmer votre adresse email</h1>
+
+<p>
+    Veuillez confirmer votre adresse email en cliquant sur le lien ci-dessous : <br><br>
+    <a href="{{ absolute_url(path('app_verify_email', {token: user.id|nzo_encrypt})) }}">Confirmer mon email</a>.
+</p>
+
+<p>
+    Cordialement <br />
+    Admin
+</p>

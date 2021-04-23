@@ -1,0 +1,34 @@
+{% extends "membre/index.html.twig" %}
+
+{% block title %}Espace membre / Mes avis{% endblock %}
+
+{% block body %}
+<h2 class="text-center">Mes avis</h2>
+
+
+<div class="container">
+<table class="table table-bordered border-dark align-middle">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Formule</th>
+      <th scope="col">Avis</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in listing %}
+    <tr>
+        <td>{{item.user.nom}}</td>
+        <td>{{item.user.prenom}}</td>
+        <td>{{item.hotel.nom}}</td>
+        <td>{{item.message}}</td>
+        <td><a class="btn btn-info" href=" {{path('avis_modification', {id:item.id})}} ">modifier</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a class="btn btn-primary" href=" {{path('membre')}} " role="button"><--Retour</a>
+</div>
+{% endblock %}

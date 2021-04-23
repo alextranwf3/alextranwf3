@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Recherche des hotels {% endblock %}
+ {% block javascripts %}
+    <script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-3 mb-5 ms-5 card filter">
+            {% include "hotelrequest/_form_filter.html.twig" %}
+    </div>
+    <div class="col-md-3 mt-5 ms-5">
+    </div>
+    <div class="col-md-8">
+            <div class="d-flex justify-content-end mb-2">
+                {{knp_pagination_sortable(hotels,'Prix', 'prix')}}
+            </div>
+            {% for hotel in hotels %}
+            {% include "admin/crud_voyage/hotel/_affichage_hotel.html.twig" %}
+                            <li><a href="{{path('hotel_details',{id:hotel.id})}}" class="btn btn-primary">Voir details</a></li>
+                        </ul>                            
+                    </div>
+            </div>
+                    {% for c in hotel.vols %}
+                <div class="admin_place_vol mb-3">
+                    <div class="admin_place_vol_economique">
+                        <p>nombre de place en classe économique : {{ c.classeEconomique }} {{ c.classeEconomique |badge }}</p>
+                    </div>
+                    <div class="admin_place_vol_affaire">
+                        <p>nombre de place en classe affaire : {{ c.classeAffaire }} {{ c.classeAffaire |badge }}</p>
+                    </div>
+                </div>                            
+                    {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="navigation">
+{{ knp_pagination_render(hotels) }}
+</div>
+
+{% endblock %}
+

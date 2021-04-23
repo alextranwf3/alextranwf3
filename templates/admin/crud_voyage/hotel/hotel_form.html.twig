@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ new ? 'Nouveau hotel' : hotel.nom }}{% endblock %}
+
+{% block body %}
+<div class="container_admin_modifier_form">
+    <div class="text-start mt-4" >
+        <a href="{{ path('liste_hotel') }}"class="small text-dark text-decoration-none btn btn-info">&#8592; Retour</a>
+    </div>
+    <div class="text-center">
+    <div>
+        <img src="{{ asset('images/hotel/' ~ hotel.image) }}" alt="" style="width: 200px;">
+        <img src="{{ asset('images/hotel/' ~ hotel.image2) }}" alt="" style="width: 200px;">
+        <img src="{{ asset('images/hotel/' ~ hotel.image3) }}" alt="" style="width: 200px;">
+        <img src="{{ asset('images/hotel/' ~ hotel.image4) }}" alt="" style="width: 200px;">
+    </div>
+
+    {% if new %}
+    <h1>Ajouter un nouveau hotel</h1>
+    {% else %}
+    <h1>modifier un hotel</h1>
+    </div>
+
+    {% endif %}
+
+    {% include "admin/crud_voyage/hotel/_form_crud_hotel.html.twig" %}
+
+    {% if not new %}
+    <div class="text-center mt-3">
+    <a href="{{path('hotel_delete',{id: hotel.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez vous supprimer cet hôtel ?')">supprimer </a>
+    </div>
+    {% endif %}
+    
+</div>
+{% endblock %}

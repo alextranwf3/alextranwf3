@@ -1,0 +1,61 @@
+               <div class="admin_DepartVol_logo ms-5 mt-2">
+                    <i class="fas fa-plane-departure"></i>
+                    <p>{{ vol.compagnieDepart }} </p>
+                </div>
+                <div class="admin_departVol_date_depart">
+                    <h5><b>ALLER</b></h5>
+                    {{ vol.dateDeDepart|date('Y-m-d à H:i')}}
+                    <p>{{ vol.nomAeroportDepart }}</p>
+                </div>
+                <div class="admin_DepartVol_escale"style="display: flex;
+                 align-items: center;">
+                    <img src="{{ asset('images/image_vol/escale.png') }}" alt="" style="width: 150px; height: 50px;">
+                </div>
+                <div class="admin_arriveVol_date_depart">
+                    <h5><b>ATTERRISSAGE</b> </h5>
+                    {{ vol.dateArrive|date('Y-m-d à H:i') }}
+                    <p>{{ vol.nomAeroportArrive }}</p>
+                </div>
+                <div class="admin_vol_duree">
+                    <p>{{ vol.dureeVol|date('H:i') }}</p>
+                    <p>
+                        <i class="fas fa-suitcase-rolling"></i> <br>
+                        bagage à main inclus.
+                    </p> 
+                </div>
+            </div>
+            <div class="admin_DepartVol_liste_vol mt-3 mb-2">
+                <div class="admin_DepartVol_logo ms-5">
+                    <i class="fas fa-plane-arrival"></i></i>
+                    <p>{{ vol.compagnieRetour }} </p>
+                </div>
+                <div class="admin_departVol_date_depart">
+                    <h5><b>RETOUR</b> </h5>
+                    {{ vol.RetourdateDeDepart|date('Y-m-d à H:i')}}
+                    <p>{{ vol.nomAeroportArrive }}</p>
+                </div>
+                <div class="admin_DepartVol_escale" style="display: flex;
+                 align-items: center;">
+                    <img src="{{ asset('images/image_vol/escale.png') }}" alt="" style="width: 150px; height: 50px;">
+                </div>
+                <div class="admin_arriveVol_date_depart">
+                    <h5><b>ATTERRISSAGE</b> </h5>
+                    {{ vol.RetourdateArrive|date('Y-m-d à H:i') }}
+                    <p>{{ vol.nomAeroportDepart }}</p>
+                </div>
+                <div class="admin_vol_duree">
+                    <p>{{ vol.dureeVol|date('H:i') }}</p>
+                    <p>
+                        <i class="fas fa-suitcase-rolling"></i> <br>
+                        bagage à main inclus.
+                    </p> 
+            </div>
+        </div>
+        <div class="admin_place_vol mb-3">
+            <div class="admin_place_vol_economique">
+                <p>nombre de place en classe économique : {{ vol.classeEconomique }} {{ vol.classeEconomique |badge }}</p>
+            </div>
+            <div class="admin_place_vol_affaire">
+                <p>nombre de place en classe affaire : {{ vol.classeAffaire }} {{ vol.classeAffaire |badge }}</p>
+            </div>
+        </div>

@@ -1,0 +1,105 @@
+<section class="content content_content" style="width: 100%; margin: auto;">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                    <i class="fa fa-globe"></i>
+                    Bras cassés & Co.<br>
+                </h2>
+            </div>
+            <!-- /.col -->
+        </div>
+            <!-- info row -->
+        <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+            <h3>  Date: {{reservation.payement.datePaiement |date('Y-m-d')}} </h3>
+
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+            A
+                <address>
+                    <strong>
+                        {{reservation.user.nom}} {{reservation.user.prenom}}
+                    </strong>
+                    <br>
+                    Adresse: {{reservation.adresse}}
+                <br>
+                Tel: 0{{reservation.telephone}}
+                <br>
+                Email: {{reservation.user.email}}
+                </address>
+            </div>
+            <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <b>Facture #007612</b><br>
+                    <br>
+                    <b>Ordre ID:</b>4F3S8J<br>
+                    <b>Compte:</b>968-34567
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Formule</th>
+                        <th>Départ du vol</th>
+                        <th>Retour du vol</th>
+                        <th>Nombre de Personnes</th>
+                        <th>Prix</th>
+                        <th>Taux Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pdf_color">
+                            <td>{{reservation.hotel.nom}}</td>
+                            <td>
+                                {{reservation.hotel.vols.values[0].dateDeDepart |date('d/m/Y h:i') }}</br>
+                                {{reservation.hotel.vols.values[0].dateArrive |date('d/m/Y h:i') }}
+                            </td>
+                            <td>
+                                {{reservation.hotel.vols.values[0].retourDateDeDepart |date('d/m/Y h:i') }}</br>
+                                {{reservation.hotel.vols.values[0].retourDateArrive |date('d/m/Y h:i') }}
+                            </td>
+                            <td>{{reservation.nombrePersonnes}}</td>
+                            <td>
+                            
+                                {{reservation.hotel.prix |price}}
+
+                            </td>
+                            <td>
+                                {{ (reservation.hotel.prix * reservation.nombrePersonnes) |price}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr class="pdf_color">
+                                <th >Total:</th>
+                                    <td>
+                                           <b> {{ (reservation.hotel.prix * reservation.nombrePersonnes) |price}} </b>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</section>

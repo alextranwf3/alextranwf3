@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+<div class="container"> 
+       {{ form_start(form) }}
+       <div class="text-center reservation_formulaire">     
+       {{ form_row(form.adresse)}}
+       {{ form_row(form.telephone)}}
+       {{ form_row(form.nombre_personnes)}}
+       {{ form_row(form.TypeVoyage)}}
+       {{ form_row(form.submit)}}
+       </div>
+       {{ form_end(form) }}  
+</div>
+{% endblock %}
